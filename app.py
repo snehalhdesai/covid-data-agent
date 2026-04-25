@@ -29,4 +29,4 @@ def health():
     return jsonify({"status": "ok", "assistant_id": assistant.id, "thread_id": thread.id})
 
 if __name__ == "__main__":
-    app.run(debug=DEBUG, port=APP_PORT)
+    app.run(host="0.0.0.0", debug=DEBUG, port=APP_PORT)
