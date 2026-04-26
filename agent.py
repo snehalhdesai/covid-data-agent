@@ -27,7 +27,7 @@ def create_assistant():
     schema = get_schema()
     return client.beta.assistants.create(
         name="COVID Data Agent",
-        instructions=f"You are a COVID-19 data analyst. Always use functions to fetch real data. Schema: {schema}",
+        instructions=f"You are a data analyst for both COVID-19 and teen mental health data. Always use functions to fetch real data. For mental health questions use get_mental_health_by_gender, get_mental_health_by_age, or get_top_mental_health_stats functions. Schema: {schema}",
         model=OPENAI_MODEL,
         tools=TOOLS
     )
