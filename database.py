@@ -42,3 +42,27 @@ def get_top_states(metric, limit=5):
         {"l": limit}
     )
     return rows if rows else "No data found"
+
+def get_mental_health_by_gender(gender):
+    rows = run_query(
+        "SELECT gender, AVG(stress_level) as avg_stress, AVG(anxiety_level) as avg_anxiety, AVG(depression_label) as avg_depression, AVG(addiction_level) as avg_addiction FROM teen_mental_health WHERE gender=:g GROUP BY gender",
+        {"g": gender}
+    )
+    return rows if rows else "No data found"
+
+def get_mental_health_by_age(age):
+    rows = run_query(
+        "SELECT age, AVG(stress_level) as avg_stress, AVG(anxiety_level) as avg_anxiety, AVG(sleep_hours) as avg_sleep, AVG(daily_social_media_hours) as avg_social_media FROM teen_mental_health WHERE age=:a",
+        {"a": age}
+    )
+    return rows if rows else "No data found"
+
+def get_top_mental_health_stats(metric, limit=5):
+    allowed = ["stress_level", "anxiety_level", "addiction_level", "depression_label", "daily_social_media_hours"]
+    if metric not in allowed:
+        return "Invalid metric"
+    rows = run_query(
+        f"SELECT age, gender, platform_usage, {metric} FROM teen_mental_health ORDER BY {metric} DESC LIMIT :l",
+        {"l": limit}
+    )
+    return rows if rows else "No data found"

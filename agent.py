@@ -17,7 +17,10 @@ TOOLS = [
 FUNCTION_MAP = {
     "get_hospitalizations": lambda a: get_hospitalizations(a["state"], a["date"]),
     "get_positive_cases": lambda a: get_positive_cases(a["state"], a["date"]),
-    "get_top_states": lambda a: get_top_states(a["metric"], a.get("limit", 5))
+    "get_top_states": lambda a: get_top_states(a["metric"], a.get("limit", 5)),
+    "get_mental_health_by_gender": lambda a: get_mental_health_by_gender(a["gender"]),
+    "get_mental_health_by_age": lambda a: get_mental_health_by_age(a["age"]),
+    "get_top_mental_health_stats": lambda a: get_top_mental_health_stats(a["metric"], a.get("limit", 5))
 }
 
 def create_assistant():
